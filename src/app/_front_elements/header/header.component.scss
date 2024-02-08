@@ -1,0 +1,120 @@
+@import '../../../styles/styles.scss';
+@import '../../../styles/links.scss';
+
+#header {
+    width: 100%;
+    text-align: center;
+    background-color: $background;
+    font-family: 'Righteous', cursive;
+    transition: 0.2s;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px black;
+}
+
+#h1Header {
+    font-size: 90px;
+    letter-spacing: 0.1em;
+    text-shadow: -15px 5px 20px black;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: 3px 3px 0px $red, 
+    6px 6px 0px $green;
+}
+
+#ah1 {
+  color : $yellow;
+}
+
+ul {
+    list-style-position: outside;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+li {
+    padding-right: 30px;
+    font-size: 20px;
+}
+
+a {
+    color : black;
+}
+
+.navbar, .icon {
+    display: none;
+}
+
+@media screen and (max-width: 1500px) {
+    .left-content {display: none};
+    .right-content {display: none};
+    #h1Header {     
+        position: absolute;
+        left: 20px;
+        transform: translateX(0%);
+    };
+
+    .navbar.active, .icon {
+      display: block;
+      position: absolute;
+      top: 20px;
+      transform: translateX(0%);
+      margin: 0;
+    }
+
+    .icon {
+      right: 15px;
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    .navbar.active {
+      background-color: #f7f3eb59;
+      backdrop-filter: blur(3px);
+      width: 100%;
+      height: 100vh;
+      top: 0 !important;
+      margin: 0;
+      padding: 0;
+
+    }
+
+    .menubox.active {
+      background-color: #f7f3eb59;
+      backdrop-filter: blur(3px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: right;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      margin-left: 0;
+      line-height: 5em;
+    }
+    
+}
+
+@media screen and (min-width: 300px) and ( max-width: 600px) {
+  #h1Header {     
+    font-size: 50px !important;
+  };
+
+  .icon {
+    width: 50px !important;
+    padding-top: 5px;
+  }
+
+}

@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="space"></div>
+  <h1>{{ playlist.name }}</h1>
+  <div class="space"></div>
+  <p>
+    Par <span>{{ playlistUser }}</span>
+  </p>
+  <p>
+    Créée le <span>{{ playlist.creationDate | date : "dd/MM/yyyy" }}</span>
+  </p>
+  <p>
+    "<span>{{ playlist.description }}</span
+    >"
+  </p>
+  <div class="space"></div>
+  <h1>Les épisodes de la playlist</h1>
+  <div class="space"></div>
+  <div class="audio" id="audio">
+    <h5>Ecoute de "{{ episodeTitle }}"</h5>
+    <div class="audioCtrl">
+      <audio id="epAudio" [src]="episodeAudio" controls autoplay></audio
+      ><a (click)="stopAudio()" alt="Arrêter l'écoute" title="Arrêter l'écoute"
+        ><fa-icon class="closeAudio" [icon]="faDelete" size="2xl"></fa-icon
+      ></a>
+    </div>
+  </div>
+  <div class="space"></div>
+  <div class="table">
+    <table class="centered">
+      <thead>
+        <tr>
+          <th>Episodes</th>
+          <th>Podcasts</th>
+          <th class="tabhead">Ecouter</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let episode of playlistEpisodes">
+          <td>{{ episode.title }}</td>
+          <td>
+            <a
+              class="smallLinks"
+              [routerLink]="['/podtheque/detail/', episode.podcastId]"
+              ><span>{{ episode.podcastTitle }}</span></a
+            >
+          </td>
+          <td>
+            <a
+              class="listen"
+              (click)="
+                playAudio(
+                  episode.audioUrl,
+                  episode.title,
+                  episode.episodeId,
+                  episode.podcastId
+                )
+              "
+              alt="Ecouter l'épisode"
+              title="Ecouter l'épisode"
+              ><fa-icon [icon]="faPlay" size="xl"></fa-icon
+            ></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="space"></div>
+  </div>
+</div>

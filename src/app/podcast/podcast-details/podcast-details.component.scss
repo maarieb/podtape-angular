@@ -1,0 +1,146 @@
+@import '../../../styles/styles.scss';
+@import '../../../styles/links.scss';
+@import '../../../styles/audio.scss';
+
+.container {
+    width: 90%;
+    height: 100%;
+    flex-direction: flex;
+    justify-content: center;
+    background-color: $lightbackground;
+    border-radius: 10px;
+    box-shadow: rgb(171, 52, 40) 0px 0px 0px 3px, rgb(245, 133, 73) 0px 0px 0px 6px, rgb(242, 166, 90) 0px 0px 0px 9px, rgb(238, 193, 112) 0px 0px 0px 12px;
+}
+
+.podcast {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+}
+
+img {
+    margin-left: 30px;
+    width: 400px;
+    height: 400px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5%;
+}
+
+.podcastDetails {
+    margin : 0 50px;
+    text-align: justify;
+}
+
+.podcastDetails p {
+    margin-bottom: 20px;
+    font-family: $normalFont;
+}
+
+h2 {
+    font-family: $bigFont !important;
+    margin-bottom: 20px;
+}
+
+span {
+    font-family: $normalFont;
+    font-weight: 800;
+}
+
+fa-icon {
+    cursor: pointer;
+}
+
+.message {
+    font-size: 12px;
+    text-align: right;
+    padding-left: 20px;
+}
+
+.separator {
+    width: 70%;
+    margin: 50px auto;
+    padding: 0;
+    border-bottom: 5px solid $paleOrange;
+    border-radius: 10px;
+}
+
+.titleEp {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.card-title {
+    font-size : 20px;
+    font-weight: 600;
+}
+
+.card {
+    margin: 10px 70px;
+}
+
+.space {
+    height: 20px;
+}
+
+.add {
+    margin-left: 10px;
+}
+
+// #####################################################################################
+// RESPONSIVENESS
+
+@media screen and (max-width: 1000px) {
+
+    .podcast {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .podcastDetails {
+        margin-top: 30px;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+}
+
+@media screen and (max-width: 800px) {
+    img {
+        width: 300px;
+        height: 300px;
+        margin-left: 0;
+    }
+
+    .card {
+        margin: 10px 40px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    img {
+        width: 200px;
+        height: 200px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .podcastDetails {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .card-title {
+        font-size: 18px;
+    }
+
+    .card {
+        margin: 10px 20px;
+    }
+}

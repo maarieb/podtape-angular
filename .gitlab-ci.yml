@@ -1,0 +1,40 @@
+stages:
+  - build
+  - docker-build
+  - deploy
+
+build:
+  stage: build
+  image: node
+  before_script:
+    - npm install
+  script:
+    - npm run build
+    - ls -lah
+  artifacts:
+    paths:
+      - dist/podtape_front
+
+docker-build:
+  stage: docker-build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  dependencies:
+    - build
+
+main-deploy:
+  stage: deploy
+  image: drkms/surge.sh
+  script:
+    - cd $CI_PROJECT_DIR/dist/podtape_front
+    - surge --project=$PWD --domain="https://podtape.surge.sh"
+  dependencies:
+    - build
+    - docker-build
+  only:
+    - main

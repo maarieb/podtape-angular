@@ -1,0 +1,80 @@
+<header id="header" appRandomLinkColor>
+  <div class="left-content">
+    <ul *ngIf="isLoggedIn | async">
+      <li><a class="a" [routerLink]="['/podcast']">La Sélection</a></li>
+      <li><a class="a" [routerLink]="['/podtheque']">La Podthèque</a></li>
+      <li><a class="a" [routerLink]="['/station']">La Station</a></li>
+    </ul>
+  </div>
+  <h1 id="h1Header">
+    <a *ngIf="isLoggedIn | async" id="ah1" [routerLink]="['/home']">{{
+      title
+    }}</a>
+    <a *ngIf="!(isLoggedIn | async)" id="ah1" [routerLink]="['/']">{{
+      title
+    }}</a>
+  </h1>
+  <div class="right-content">
+    <ul *ngIf="!(isLoggedIn | async)">
+      <li>
+        <a class="a" [routerLink]="['/login']">Se connecter</a>
+      </li>
+    </ul>
+    <ul *ngIf="isLoggedIn | async">
+      <li>
+        <a class="a" [routerLink]="['/profile']">Mon profil</a>
+      </li>
+      <li>
+        <a class="a" [routerLink]="['/logout']">Se déconnecter</a>
+      </li>
+    </ul>
+  </div>
+  <img
+    class="icon"
+    id="icon"
+    src="../../../assets/iconmenu.svg"
+    alt="icone menu"
+    (click)="activateMenu()"
+  />
+  <div class="navbar" id="navbar">
+    <ul class="menubox" id="menubox" *ngIf="isLoggedIn | async">
+      <li>
+        <a class="a" [routerLink]="['/profile']" (click)="activateMenu()"
+          >Mon profil</a
+        >
+      </li>
+      <li>
+        <a class="a" [routerLink]="['/podcast']" (click)="activateMenu()"
+          >La Sélection</a
+        >
+      </li>
+      <li>
+        <a class="a" [routerLink]="['/podtheque']" (click)="activateMenu()"
+          >La Podthèque</a
+        >
+      </li>
+      <li>
+        <a class="a" [routerLink]="['/station']" (click)="activateMenu()"
+          >La Station</a
+        >
+      </li>
+      <li>
+        <a class="a" [routerLink]="['/home']" (click)="activateMenu()"
+          >Mes recommandations</a
+        >
+      </li>
+      <li>
+        <a class="a" [routerLink]="['/logout']" (click)="activateMenu()"
+          >Se déconnecter</a
+        >
+      </li>
+    </ul>
+    <ul class="menubox" id="menubox" *ngIf="!(isLoggedIn | async)">
+      <li>
+        <a class="a" [routerLink]="['/login']" (click)="activateMenu()"
+          >Se connecter</a
+        >
+      </li>
+    </ul>
+  </div>
+</header>

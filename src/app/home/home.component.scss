@@ -1,0 +1,130 @@
+@import '../../styles/styles.scss';
+@import '../../styles/links.scss';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 200px;
+    text-align: center;
+    font-family: $normalFont;
+    border-radius: 10px;
+    background-color: $lightbackground;
+    box-shadow: rgb(171, 52, 40) 0px 0px 0px 3px, rgb(245, 133, 73) 0px 0px 0px 6px, rgb(242, 166, 90) 0px 0px 0px 9px, rgb(238, 193, 112) 0px 0px 0px 12px;
+    padding: 0;
+    width: 70%;
+}
+
+.loginBtn:hover {
+    font-size: 22px;
+    padding: 20px;
+    border-radius: 50px;
+    box-shadow: rgb(171, 52, 40) 0px 0px 0px 3px, rgb(245, 133, 73) 0px 0px 0px 6px, rgb(242, 166, 90) 0px 0px 0px 9px, rgb(238, 193, 112) 0px 0px 0px 12px;
+    transition: 0.5s ease ;
+}
+
+.loginBtn {
+    height: 50px;
+    font-family: $bigFont;
+    font-size: 20px;
+}
+
+h1 {
+    color : $yellow;
+    font-size: 60px;
+    margin: 50px auto;
+    text-shadow: 3px 3px 0px $red, 
+    6px 6px 0px $green;
+    letter-spacing: 3px;
+}
+
+.space {
+    height: 50px;
+}
+
+p {
+    line-height: 40px;
+    font-size: 20px;
+}
+
+span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 800px) {
+    h1 {
+        font-size: 40px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    span {
+        font-size:18px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    h1 {
+        font-size: 30px;
+        text-shadow: none;
+        color: black;
+    }
+
+    p {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    span {
+        font-size:14px;
+        text-shadow: none;
+        color : black;
+    }
+
+    .loginBtn:hover {
+        font-size: 20px;
+        padding: 15px;
+        border-radius: 25px;
+        box-shadow: rgb(171, 52, 40) 0px 0px 0px 3px, rgb(245, 133, 73) 0px 0px 0px 6px, rgb(242, 166, 90) 0px 0px 0px 9px, rgb(238, 193, 112) 0px 0px 0px 12px;
+    }
+
+    .container {
+        width: 90%;
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+    h1 {
+        font-size: 30px;
+        text-shadow: none;
+        color: black;
+        padding: 0 10px;
+    }
+
+    p {
+        font-size: 14px;
+        padding: 0 10px;
+        line-height: 20px;
+    }
+
+    fa-icon {
+        display: none;
+    }
+
+    span {
+        font-size:14px;
+        text-shadow: none;
+        color : black;
+    }
+
+    .loginBtn:hover {
+        font-size: 20px;
+        padding: 15px;
+        border-radius: 25px;
+        box-shadow: rgb(171, 52, 40) 0px 0px 0px 3px, rgb(245, 133, 73) 0px 0px 0px 6px, rgb(242, 166, 90) 0px 0px 0px 9px, rgb(238, 193, 112) 0px 0px 0px 12px;
+    }
+}

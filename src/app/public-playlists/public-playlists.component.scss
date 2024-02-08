@@ -1,0 +1,65 @@
+@import '../../styles/styles.scss';
+@import '../../styles/links.scss';
+
+.playlistsContainer {
+    margin-top: 20px;
+    height: 100%;
+    flex-direction: flex;
+    justify-content: center;
+}
+
+.subTitle {
+    font-size: 18px;
+}
+
+span {
+    font-weight: 600;
+}
+
+.playlistName {
+    font-family: $bigFont;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.title {
+    text-align: center;
+}
+
+// .row {
+//     width: 40rem;
+// }
+
+.space {
+    margin: 50px;
+}
+
+// #####################################################################################
+// RESPONSIVENESS
+
+@media screen and (max-width: 600px) {
+
+    // .row {
+    //     width: 15rem;
+    // }
+
+    .playlistsContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card-content p {
+        font-size: 14px;
+    }
+
+    .playlistName {
+        font-size: 16px;
+    }
+
+    .space {
+        display: none;
+    }
+
+}

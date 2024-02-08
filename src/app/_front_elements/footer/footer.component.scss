@@ -1,0 +1,53 @@
+@import '../../../styles/styles.scss';
+@import '../../../styles/links.scss';
+
+footer {
+    position: fixed;
+    bottom: 0px; /* Hauteur suffisamment grande pour cacher le footer */
+    left: 0;
+    right: 0;
+    background-color: $background;
+    width: 100%;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+  }
+
+img {
+    padding-top: 20px;
+    width: 200px;
+}
+
+.smallLinks {
+    font-weight: 600;
+}
+
+.podtape {
+    padding-top: 20px;
+    font-family: $bigFont;
+}
+
+.icon {
+    font-family: $bigFont;
+    font-size: 14px;
+}
+
+@media screen and (max-width: 500px) {
+    img {
+        width: 150px;
+    }
+
+    .podtape {
+        padding-top: 20px;
+        font-family: $normalFont;
+        font-size: 14px;
+    }
+    
+    .icon {
+        font-family: $normalFont;
+        font-size: 12px;
+    }
+}

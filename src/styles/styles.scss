@@ -1,0 +1,33 @@
+/* Importing Bootstrap SCSS file. */
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
+$yellow : #EEC170;
+$paleOrange: #F2A65A;
+$orange: #F58549;
+$red: #AB3428;
+$green: #656d4a;
+$background: #F6EBD8;
+$lightbackground : #F7F3EB;
+$bigFont: "Righteous", cursive;
+$normalFont: 'Ubuntu', sans-serif;
+
+body {
+    background-color: $background;
+    margin: 170px auto 100px auto;
+    height: 100%;
+    padding: 0;
+    font-family: $normalFont;
+    min-width: 320px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+h1 {
+    font-family: $bigFont;
+}

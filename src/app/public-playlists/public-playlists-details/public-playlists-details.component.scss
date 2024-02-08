@@ -1,0 +1,22 @@
+@import '../../../styles/styles.scss';
+@import '../../../styles/links.scss';
+@import '../../../styles/audio.scss';
+
+.container {
+    width: 90%;
+    height: 100%;
+    flex-direction: flex;
+    justify-content: center;
+    background-color: $lightbackground;
+    border-radius: 10px;
+    box-shadow: rgb(171, 52, 40) 0px 0px 0px 3px, rgb(245, 133, 73) 0px 0px 0px 6px, rgb(242, 166, 90) 0px 0px 0px 9px, rgb(238, 193, 112) 0px 0px 0px 12px;
+}
+
+span {
+    font-family: $normalFont;
+    font-weight: 800;
+}
+
+.space {
+    height: 20px;
+}

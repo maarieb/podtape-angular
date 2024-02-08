@@ -1,0 +1,225 @@
+@import '../../styles/styles.scss';
+@import '../../styles/links.scss';
+@import '../../styles/buttons.scss';
+@import '../../styles/inputs.scss';
+@import '../../styles/audio.scss';
+
+.container {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 0;
+    border-radius: 10px;
+    font-family: $normalFont;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 50px;
+}
+
+.bio {
+    text-align: center;
+    font-family: $normalFont;
+    font-size: 16px;
+}
+
+.quotes {
+    font-family: $bigFont;
+    font-size: 25px;
+}
+
+.navtabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: $bigFont;
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+}
+
+.tabIcon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+}
+
+.liTab {
+    width: 25%;
+    background-color: $yellow;
+}
+
+.liTab.active {
+    background-color: $lightbackground;
+}
+
+.tabContent {
+    padding: 50px;
+    background-color: $lightbackground;
+    height: 100%;
+}
+
+h2 {
+    font-weight: 600;
+}
+
+.space {
+    margin-top: 30px;
+}
+
+.userForm {
+    margin-top: 50px;
+    width: 70%;
+}
+
+label {
+    color:black !important;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+input {
+    margin-bottom: 30px !important;
+}
+
+textarea {
+    margin: 10px auto !important;
+    height: 100px;
+}
+
+textarea:focus {
+    border: 2px solid $yellow !important;
+}
+
+span {
+    font-weight: 600;
+}
+
+.message {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: $orange;
+}
+
+.invalid-feedback {
+	display: block;
+    color: $red;
+	margin: 0;
+	padding: 0;
+}
+
+.chipsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.genres span {
+    background-color: $yellow ;
+    font-family: $normalFont;
+    font-size: 18px;
+    font-weight: 500;
+    width: 100%;
+    padding: 4px;
+    border-radius: 20px;
+}
+
+.spaceChips {
+    margin-bottom: 10px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: rgb(71, 71, 71);
+	opacity: 1; /* Firefox */
+}
+
+.genreTitleBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.genreTitleBtn a {
+    font-weight: 600;
+}
+
+thead {
+    text-align: left;
+    border-bottom: 1px solid $black;
+    font-family: $bigFont;
+    font-size: 16px;
+}
+
+table {
+    width: 100%;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.listenTab {
+    border-radius: 1em;
+    overflow: hidden;
+    box-shadow: rgb(171, 52, 40) 0px 0px 0px 3px, rgb(245, 133, 73) 0px 0px 0px 6px, rgb(242, 166, 90) 0px 0px 0px 9px, rgb(238, 193, 112) 0px 0px 0px 12px;
+}
+
+.playlistCards {
+    margin: auto;
+}
+
+.container-playlist {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.playlistMobile {
+    display: none;
+}
+
+
+// #####################################################################################
+// RESPONSIVENESS
+
+@media screen and (max-width: 850px) {
+
+	.tabTitle {
+        display: none;
+    }
+
+    .genres span {
+        font-size: 14px;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+
+    .chipsContainer {
+        flex-wrap: wrap;
+    }
+
+    .userForm {
+        width: 100%;
+    }
+
+    .playlistMobile {
+        display: flex;
+        line-height: 30px;
+    }
+
+    .container-playlist {
+        display: none;
+    }
+
+    .podcastsHead, .dateHead {
+        display: none;
+    }
+}

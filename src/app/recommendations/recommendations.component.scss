@@ -1,0 +1,48 @@
+@import '../../styles/styles.scss';
+
+.space {
+    margin: 50px auto;
+}
+
+h2 {
+    font-family: $normalFont;
+    font-size: 24px;
+}
+
+.card-deck{
+    display: flex;
+    justify-content: center;
+}
+
+.reload {
+    display: flex;
+    justify-content: center;
+}
+
+fa-icon {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+    .card-deck{
+        margin : auto;
+        display: block;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .card-deck{
+        margin : auto;
+        display: block;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    
+}

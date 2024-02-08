@@ -1,0 +1,11 @@
+@import '../../../styles/styles.scss';
+@import '../../../styles/links.scss';
+
+div {
+    font-family: $bigFont;
+    font-size: 30px;
+    width: 100%;
+    padding-top: 200px;
+    padding-bottom: 200px;
+    text-align: center;
+}

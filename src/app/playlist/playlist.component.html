@@ -1,0 +1,115 @@
+<div class="container">
+  <div class="space"></div>
+  <h1>Ajouter l'épisode...</h1>
+  <p>
+    "<span>{{ episode.title }}</span
+    >" du podcast "<span>{{ podcast.title }}</span
+    >".
+  </p>
+  <div class="space"></div>
+  <div class="usersPlaylist">
+    <form
+      [formGroup]="existingPlaylistForm"
+      class="existingPlaylistForm"
+      (ngSubmit)="addToPlaylist()"
+    >
+      <h1>Dans une de tes playlists ?</h1>
+      <select
+        class="form-select form-select-md"
+        formControlName="playlist"
+        value="{{ playlist.id }}"
+      >
+        <option value="" disabled selected>Choisis ta playlist</option>
+        <option
+          *ngFor="let playlist of userPlaylists"
+          value="{{ playlist.id }}"
+        >
+          {{ playlist.name }}
+        </option>
+      </select>
+      <div class="space"></div>
+      <button type="submit">Ajouter</button>
+      <div class="space"></div>
+      <div class="messageAdd">{{ messageAdd }}</div>
+    </form>
+  </div>
+  <div class="space"></div>
+  <div class="divPlaylistForm">
+    <form
+      class="playlistForm"
+      [formGroup]="playlistForm"
+      (ngSubmit)="createPlaylist()"
+    >
+      <h1>Dans une nouvelle playlist ?</h1>
+      <input
+        type="text"
+        placeholder="Nom de la playlist"
+        name="name"
+        formControlName="name"
+      />
+      <div
+        *ngIf="submitted && playlistCtrl['name'].invalid"
+        class="invalid-feedback"
+      >
+        <p
+          class="text"
+          *ngIf="
+            playlistCtrl['name'].errors &&
+            playlistCtrl['name'].errors['required']
+          "
+        >
+          Il faut un nom pour ta playlist !
+        </p>
+      </div>
+      <textarea
+        placeholder="Description"
+        name="description"
+        formControlName="description"
+        height="50px"
+      ></textarea>
+      <div
+        *ngIf="submitted && playlistCtrl['description'].invalid"
+        class="invalid-feedback"
+      >
+        <p
+          class="text"
+          *ngIf="
+            playlistCtrl['description'].errors &&
+            playlistCtrl['description'].errors['required']
+          "
+        >
+          La description ne peut pas faire plus de 200 caractères !
+        </p>
+      </div>
+      <div class="space"></div>
+      <div class="checkbox">
+        <p>
+          <label>
+            <input
+              name="status"
+              type="radio"
+              formControlName="status"
+              value="private"
+            />
+            <span>Privée</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input
+              name="status"
+              type="radio"
+              formControlName="status"
+              value="public"
+            />
+            <span>Publique</span>
+          </label>
+        </p>
+      </div>
+      <div class="space"></div>
+      <button type="submit">Créer et ajouter</button>
+      <div class="space"></div>
+      <div class="messageCreate">{{ messageCreate }}</div>
+    </form>
+  </div>
+</div>

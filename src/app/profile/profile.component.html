@@ -1,0 +1,227 @@
+<h1>{{ this.currentUser }}</h1>
+<p class="bio">
+  <span class="quotes">"</span>{{ user.bio }}<span class="quotes">"</span>
+</p>
+<div class="container">
+  <!-- navigation bar -->
+  <ul class="navtabs">
+    <li class="liTab" [ngClass]="{ active: tab == 1 }" (click)="tab = 1">
+      <div class="tabIcon tab1">
+        <fa-icon [icon]="faUser" size="xl"></fa-icon>
+        <a class="tabTitle">Profil</a>
+      </div>
+    </li>
+    <li class="liTab" [ngClass]="{ active: tab == 2 }" (click)="tab = 2">
+      <div class="tabIcon tab2">
+        <fa-icon [icon]="faStar" size="xl"></fa-icon>
+        <a class="tabTitle">Favoris</a>
+      </div>
+    </li>
+    <li class="liTab" [ngClass]="{ active: tab == 3 }" (click)="tab = 3">
+      <div class="tabIcon tab3">
+        <fa-icon [icon]="faPlay" size="xl"></fa-icon>
+        <a class="tabTitle">Playlists</a>
+      </div>
+    </li>
+    <li class="liTab" [ngClass]="{ active: tab == 4 }" (click)="tab = 4">
+      <div class="tabIcon tab4">
+        <fa-icon [icon]="faVolume" size="xl"></fa-icon>
+        <a class="tabTitle">Historique d'écoute</a>
+      </div>
+    </li>
+  </ul>
+  <!-- inside each tab -->
+  <div class="tabContent" [ngSwitch]="tab">
+    <!-- ############################################################################################## -->
+    <!-- USER'S PROFILE - where he can modify his personal infos -->
+    <div *ngSwitchCase="1">
+      <h2>Tes informations</h2>
+      <p>Tu peux gèrer ton profil à tout moment !</p>
+      <div class="space"></div>
+      <p>
+        Membre depuis le
+        <span>{{ user.creationDate | date : "dd/MM/yyyy" }}</span>
+      </p>
+      <div class="space"></div>
+      <p class="message">{{ message }}</p>
+      <form class="userForm" [formGroup]="userForm" (ngSubmit)="updateUser()">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="text"
+          formControlName="email"
+          placeholder="{{ user.email }}"
+        />
+        <label for="bio">Biographie</label>
+        <textarea
+          id="bio"
+          formControlName="bio"
+          cols="5"
+          placeholder="{{ user.bio }}"
+        >
+        </textarea>
+        <div
+          *ngIf="submitted && userCtrl['bio'].invalid"
+          class="invalid-feedback"
+        >
+          <p
+            class="text"
+            *ngIf="
+              userCtrl['bio'].errors && userCtrl['bio'].errors['maxLength']
+            "
+          >
+            La bio ne doit pas dépasser 200 charactères !
+          </p>
+        </div>
+        <div class="space"></div>
+        <button type="submit">Valider</button>
+      </form>
+      <div class="space"></div>
+      <div class="genreTitleBtn">
+        <h2>Tes genres préférés</h2>
+      </div>
+      <a class="smallLinks" [routerLink]="['/genre']">Modifier ?</a>
+      <div class="space"></div>
+      <div class="chipsContainer">
+        <div *ngFor="let genre of user.genrePref" class="genres">
+          <span appChips>{{ genre }}</span>
+          <div class="spaceChips"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ############################################################################################## -->
+    <!-- Where user can manage his favorites -->
+    <div *ngSwitchCase="2">
+      <div class="space"></div>
+      <h2>Tes podcasts favoris</h2>
+      <h3>{{ user.nbFavorites }} favoris !</h3>
+      <div class="space"></div>
+      <div>
+        <div class="row">
+          <div class="card-deck">
+            <div *ngFor="let fav of favoritePodcasts" class="col xl2 l3 m4 s12">
+              <a [routerLink]="['/podtheque/detail', fav.podcastId]">
+                <div class="card" podcastBorderCard>
+                  <div class="card-image">
+                    <img [src]="fav.image" />
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ############################################################################################## -->
+    <!-- Where user can manage his playlists -->
+    <div *ngSwitchCase="3">
+      <div class="space"></div>
+      <h2>Tes playlists</h2>
+      <h3>{{ user.nbPlaylists }} playlists !</h3>
+      <div class="space"></div>
+      <div class="container-playlist">
+        <div class="row">
+          <div
+            *ngFor="let playlist of user.playlists"
+            class="col xl1 l3 m4 s12"
+            style="width: 16rem"
+          >
+            <a [routerLink]="['/profile/playlist/', playlist.id]">
+              <div class="card playlistCards" podcastBorderCard>
+                <div class="card-image">
+                  <img src="../../assets/audiotape.png" />
+                </div>
+                <div class="card-content">
+                  <p>
+                    <span>{{ playlist.name }}</span>
+                  </p>
+                  <p>
+                    Créée le
+                    <span class="date">{{
+                      playlist.creationDate | date : "dd/MM/yyyy"
+                    }}</span>
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile mode -->
+      <div *ngFor="let playlist of user.playlists" class="playlistMobile">
+        <a [routerLink]="['/profile/playlist/', playlist.id]">
+          <fa-icon [icon]="faPen" size="xl"></fa-icon>
+        </a>
+        <span
+          >&emsp;{{ playlist.name }} |
+          {{ playlist.creationDate | date : "dd/MM/yyyy" }}</span
+        >
+      </div>
+    </div>
+    <!-- ############################################################################################## -->
+    <!-- Where user find is listening history -->
+    <div *ngSwitchCase="4">
+      <div class="space"></div>
+      <h2>Les épisodes écoutés</h2>
+      <div class="space"></div>
+      <div class="audio" id="audio">
+        <h5>Ecoute de "{{ episodeTitle }}"</h5>
+        <div class="audioCtrl">
+          <audio id="epAudio" [src]="episodeAudio" controls autoplay></audio>
+          <a
+            (click)="stopAudio()"
+            alt="Arrêter l'écoute"
+            title="Arrêter l'écoute"
+            ><fa-icon class="closeAudio" [icon]="faDelete" size="2xl"></fa-icon
+          ></a>
+        </div>
+      </div>
+      <div class="space"></div>
+      <div class="table">
+        <table class="listenTab">
+          <thead>
+            <tr>
+              <th>Episodes</th>
+              <th class="podcastsHead">Podcasts</th>
+              <th class="dateHead">Date d'écoute</th>
+              <th class="tabhead">Ecouter</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let episode of listeningList">
+              <td>{{ episode.title }}</td>
+              <td class="podcastsHead">
+                <a
+                  class="smallLinks"
+                  [routerLink]="['/podtheque/detail/', episode.podcastId]"
+                  ><span>{{ episode.podcastTitle }}</span></a
+                >
+              </td>
+              <td class="dateHead">
+                {{ episode.listeningDate | date : "dd/MM/yyyy" }}
+              </td>
+              <td>
+                <a
+                  (click)="
+                    playAudio(
+                      episode.audioUrl,
+                      episode.title,
+                      episode.episodeId,
+                      episode.podcastId
+                    )
+                  "
+                  alt="Ecouter l'épisode"
+                  title="Ecouter l'épisode"
+                  ><fa-icon class="listen" [icon]="faPlay" size="xl"></fa-icon
+                ></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngSwitchDefault>Default</div>
+    </div>
+  </div>
+</div>

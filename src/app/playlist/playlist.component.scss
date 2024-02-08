@@ -1,0 +1,145 @@
+@import '../../styles/styles.scss';
+@import '../../styles/links.scss';
+@import '../../styles/buttons.scss';
+@import '../../styles/inputs.scss';
+
+
+.playlistForm, .existingPlaylistForm {
+    margin: 50px auto;
+    height: 100%;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+.container {
+    box-shadow: rgb(171, 52, 40) 0px 0px 0px 3px, rgb(245, 133, 73) 0px 0px 0px 6px, rgb(242, 166, 90) 0px 0px 0px 9px, rgb(238, 193, 112) 0px 0px 0px 12px;
+    border-radius: 10px;
+    font-family: $normalFont;
+	background-color: $lightbackground;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 20px 50px;
+	text-align: center;
+}
+
+label {
+    color:black !important;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+input {
+    margin-bottom: 30px !important;
+}
+
+textarea {
+    background-color: transparent;
+    margin: 10px auto !important;
+    height: 100px;
+}
+
+textarea:focus {
+    border: 2px solid $yellow !important;
+}
+
+.invalid-feedback {
+	display: block;
+    color: $red;
+	margin: 0;
+	padding: 0;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: rgb(139, 139, 139);
+	opacity: 1; /* Firefox */
+}
+
+.space {
+    margin-top: 30px;
+}
+
+span {
+    font-weight: 600;
+}
+
+.divPlaylistForm, .usersPlaylist {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 80%;
+}
+
+select:focus {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px !important;
+    border: none !important;
+}
+
+.usersPlaylist {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: auto;
+    width: 80%;
+}
+
+.messageAdd, .messageCreate {
+    font-weight: 600;
+}
+
+// #####################################################################################
+// RESPONSIVENESS
+
+@media screen and (max-width: 1000px) {
+
+    .divPlaylistForm, .usersPlaylist {
+        width: 100%;
+    }    
+    
+}
+
+@media screen and (max-width: 800px) {
+
+    .divPlaylistForm, .usersPlaylist {
+        width: 100%;
+    }
+    
+    input {
+        width: 90% !important;
+    }
+    
+    textarea {
+        width: 90%;
+    }
+    
+}
+
+@media screen and (max-width: 600px) {
+
+    .divPlaylistForm, .usersPlaylist {
+        width: 100%;
+    }
+    
+    input, select {
+        width: 90% !important;
+    }
+
+    select {
+        margin-left: 15px;
+    }
+    
+    textarea {
+        width: 90%;
+    }
+
+    .container {
+        width: 90%;
+    }  
+}

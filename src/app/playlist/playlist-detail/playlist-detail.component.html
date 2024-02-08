@@ -1,0 +1,169 @@
+<div class="container">
+  <div class="space"></div>
+  <h1>{{ playlist.name }}</h1>
+  <p>
+    Créée le : <span>{{ playlist.creationDate | date : "dd/MM/yyyy" }}</span>
+  </p>
+  <p>
+    <span>{{ playlist.description }}</span>
+  </p>
+  <div class="space"></div>
+  <h1>Les épisodes de la playlist</h1>
+  <div class="audio" id="audio">
+    <h5>Ecoute de "{{ episodeTitle }}"</h5>
+    <div class="audioCtrl">
+      <audio id="epAudio" [src]="episodeAudio" controls autoplay></audio
+      ><a (click)="stopAudio()" alt="Arrêter l'écoute" title="Arrêter l'écoute"
+        ><fa-icon class="closeAudio" [icon]="faDelete" size="2xl"></fa-icon
+      ></a>
+    </div>
+  </div>
+  <div class="table">
+    <table class="listenTab">
+      <thead>
+        <tr>
+          <th>Episodes</th>
+          <th class="mobile">Podcasts</th>
+          <th class="tabhead">Ecouter</th>
+          <th class="tabhead">Retirer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let episode of playlistEpisodes">
+          <td>{{ episode.title }}</td>
+          <td class="mobile">
+            <a
+              class="smallLinks"
+              [routerLink]="['/podtheque/detail/', episode.podcastId]"
+              ><span>{{ episode.podcastTitle }}</span></a
+            >
+          </td>
+          <td class="remove">
+            <a
+              class="listen"
+              (click)="
+                playAudio(
+                  episode.audioUrl,
+                  episode.title,
+                  episode.episodeId,
+                  episode.podcastId
+                )
+              "
+              alt="Ecouter l'épisode"
+              title="Ecouter l'épisode"
+              ><fa-icon [icon]="faPlay" size="xl"></fa-icon
+            ></a>
+          </td>
+          <td class="remove">
+            <a (click)="removeFromPlaylist(episode.episodeId)"
+              ><fa-icon [icon]="faDelete" size="xl"></fa-icon
+            ></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="space"></div>
+    <div class="removeMessage">{{ removeMessage }}</div>
+  </div>
+  <div class="divForm" id="divForm">
+    <form
+      [formGroup]="playlistForm"
+      (ngSubmit)="updatePlaylist()"
+      class="playlistForm"
+    >
+      <span>Nom de la playlist</span>
+      <input
+        type="text"
+        placeholder="{{ playlist.name }}"
+        name="name"
+        formControlName="name"
+      />
+      <div
+        *ngIf="submitted && playlistCtrl['name'].invalid"
+        class="invalid-feedback"
+      >
+        <p
+          class="text"
+          *ngIf="
+            playlistCtrl['name'].errors &&
+            playlistCtrl['name'].errors['maxLength']
+          "
+        >
+          Le nom ne peut pas faire plus de 20 caractères !
+        </p>
+      </div>
+      <span>Description</span>
+      <textarea
+        placeholder="{{ playlist.description }}"
+        name="description"
+        formControlName="description"
+        height="50px"
+      ></textarea>
+      <div
+        *ngIf="submitted && playlistCtrl['description'].invalid"
+        class="invalid-feedback"
+      >
+        <p
+          class="text"
+          *ngIf="
+            playlistCtrl['description'].errors &&
+            playlistCtrl['description'].errors['required']
+          "
+        >
+          La description ne peut pas faire plus de 200 caractères !
+        </p>
+      </div>
+      <div class="space"></div>
+      <div class="checkbox">
+        <p>
+          <label>
+            <input
+              name="status"
+              type="radio"
+              checked
+              formControlName="status"
+              [value]="playlistStatus"
+            />
+            <span>{{ playlistStatus }}</span>
+          </label>
+        </p>
+        <p *ngIf="playlistStatus === 'Privée'">
+          <label>
+            <input
+              name="status"
+              type="radio"
+              value="public"
+              formControlName="status"
+            />
+            <span>Publique</span>
+          </label>
+        </p>
+        <p *ngIf="playlistStatus === 'Publique'">
+          <label>
+            <input
+              name="status"
+              type="radio"
+              value="private"
+              formControlName="status"
+            />
+            <span>Privée</span>
+          </label>
+        </p>
+      </div>
+      <div class="space"></div>
+      <button type="submit">Modifier</button>
+      <div class="space"></div>
+      <div class="message">{{ message }}</div>
+    </form>
+  </div>
+  <div class="space"></div>
+  <a class="smallLinks" (click)="displayForm()">
+    <span>Modifier la playlist ? </span></a
+  >
+  <div class="space"></div>
+  <a class="supprimer smallLinks" (click)="deletePlaylist()">
+    <span>Supprimer la playlist ? </span></a
+  >
+  <div class="space"></div>
+  <div class="deleteMessage">{{ deleteMessage }}</div>
+</div>

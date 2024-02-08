@@ -1,0 +1,52 @@
+<h1 class="center">La Podthèque</h1>
+<p class="subTitle">
+  Retrouves ici tous les podcasts disponibles sur la plateforme !
+</p>
+
+<div class="userInputs">
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+      <div class="input-group input-group-md">
+        <input
+          id="search-input"
+          type="text"
+          class="form-control"
+          placeholder="Rechercher"
+          autofocus
+          [(ngModel)]="keyword"
+          (ngModelChange)="keywordSubject.next($event)"
+          name="keyword"
+        />
+      </div>
+    </div>
+    <div class="select-container">
+      <select
+        class="form-select form-select-md"
+        [(ngModel)]="selectedGenre"
+        name="selectedGenre"
+        (click)="getPodthequeByGenre()"
+      >
+        <option value="" disabled selected>Filtrer par genre</option>
+        <option value="all">Tous</option>
+        <option *ngFor="let genre of genres" [value]="genre">
+          {{ genre }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="card-deck">
+        <div *ngFor="let podcast of podthequeList" class="col xl2 l3 m4 s12">
+          <a [routerLink]="['detail', podcast.podcastId]">
+            <div class="card" podcastBorderCard>
+              <div class="card-image">
+                <img [src]="podcast.image" />
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

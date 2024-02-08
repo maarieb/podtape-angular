@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="podcast">
+    <div class="img">
+      <img [src]="podcast.image" />
+    </div>
+    <div class="podcastDetails">
+      <h2 class="title">
+        {{ podcast.title }}&emsp;<fa-icon
+          *ngIf="!isFavorite"
+          [icon]="nofavIcon"
+          size="sm"
+          (click)="addToFavorite()"
+        ></fa-icon>
+        <fa-icon
+          *ngIf="isFavorite"
+          [icon]="favIcon"
+          size="sm"
+          (click)="removeFromFavorite()"
+        ></fa-icon
+        >&emsp;
+        <p class="message">{{ message }}</p>
+      </h2>
+      <p>
+        {{ description }} - <span>{{ podcast.publisher }}</span>
+      </p>
+      <p>
+        Dernière publication : <span>{{ date | date : "dd/MM/yyyy" }}</span>
+      </p>
+      <p>
+        Nombre total d'épisodes : <span>{{ podcast.totalEpisode }}</span>
+      </p>
+      <div class="genres">
+        Genre(s) :
+        <span *ngFor="let genre of podcast.genres">
+          <span *ngIf="!moreThanOne"> {{ genre }} </span>
+          <span *ngIf="moreThanOne"> {{ genre }} | </span>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="separator"></div>
+  <h2 class="titleEp">Les derniers épisodes</h2>
+  <div class="audio" id="audio">
+    <h5>Ecoute de "{{ episodeTitle }}"</h5>
+    <div class="audioCtrl">
+      <audio id="epAudio" [src]="episodeAudio" controls autoplay></audio
+      ><a (click)="stopAudio()" alt="Arrêter l'écoute" title="Arrêter l'écoute"
+        ><fa-icon class="closeAudio" [icon]="faClose" size="2xl"></fa-icon
+      ></a>
+    </div>
+  </div>
+  <div class="card" *ngFor="let ep of podcast.episodes" podcastBorderCard>
+    <div class="card-body">
+      <p hidden>{{ ep.episodeId }}</p>
+      <h5 class="card-title">{{ ep.title }}</h5>
+      <p class="card-text">
+        {{ ep.cleanDescription }}
+      </p>
+      <p class="card-text">
+        <span>Date de publication :</span>
+        {{ ep.publicationDate | date : "dd/MM/yyyy" }}
+      </p>
+      <p class="card-text">
+        <span>Durée de l'épisode :</span>
+        {{ ep.audioLength | durationFormat : "s" : "hhmmss" }}
+      </p>
+      <p class="card-text">
+        <a
+          class="listen"
+          (click)="playAudio(ep.audioUrl, ep.title, ep.episodeId)"
+          alt="Ecouter l'épisode"
+          title="Ecouter l'épisode"
+          ><fa-icon [icon]="faPlay" size="2xl"></fa-icon
+        ></a>
+        <a
+          class="add"
+          [routerLink]="['/playlist', ep.episodeId, podcast.podcastId]"
+          alt="Ajouter l'épisode à une playlist"
+          title="Ajouter l'épisode à une playlist"
+          ><fa-icon [icon]="faAdd" size="2xl"></fa-icon
+        ></a>
+      </p>
+    </div>
+  </div>
+  <div class="space"></div>
+</div>

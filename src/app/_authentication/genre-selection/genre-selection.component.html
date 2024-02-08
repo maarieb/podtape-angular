@@ -1,0 +1,66 @@
+<form
+  *ngIf="!(isLoggedIn | async)"
+  (ngSubmit)="createUserGenrePreference(selectedGenres)"
+>
+  <h1>
+    Genre(s) sélectionné(s) : &emsp;<span
+      appChips
+      class="selectedGenre"
+      *ngFor="let genre of selectedGenres"
+      >{{ genre }} <a class="remove" (click)="remove(genre)"><span>X</span></a>
+    </span>
+  </h1>
+  <div class="container">
+    <div class="row">
+      <div class="card-deck">
+        <div
+          *ngFor="let genre of genres"
+          class="col col-xl-4 col-lg-4 col-md-6 col-sm-12"
+        >
+          <a class="acard" (click)="addToList(genre)">
+            <div class="card" appGenreCard>
+              <div class="card-content">
+                <p>{{ genre }}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <button type="submit">Valider</button>
+  </div>
+</form>
+<form
+  *ngIf="isLoggedIn | async"
+  (ngSubmit)="updateGenrePreference(selectedGenres)"
+>
+  <h1>
+    Genre(s) sélectionné(s) : &emsp;<span
+      appChips
+      class="selectedGenre"
+      *ngFor="let genre of selectedGenres"
+      >{{ genre }} <a class="remove" (click)="remove(genre)"><span>X</span></a>
+    </span>
+  </h1>
+  <div class="container">
+    <div class="row">
+      <div class="card-deck">
+        <div
+          *ngFor="let genre of genres"
+          class="col col-xl-4 col-lg-4 col-md-6 col-sm-12"
+        >
+          <a class="acard" (click)="addToList(genre)">
+            <div class="card" appGenreCard>
+              <div class="card-content">
+                <p>
+                  {{ genre }}
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <button type="submit">Valider</button>
+  </div>
+</form>

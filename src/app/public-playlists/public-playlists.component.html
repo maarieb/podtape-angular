@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="title">
+    <h1>La Station</h1>
+    <p class="subTitle">Découvres les playlists des autres podtapers !</p>
+  </div>
+  <div class="space"></div>
+  <div class="playlistsContainer">
+    <div class="row">
+      <div
+        *ngFor="let publicPlaylist of publicPlaylists"
+        class="col xl1 l3 m4 s12"
+      >
+        <a
+          [routerLink]="[
+            '/station/detail/',
+            publicPlaylist.playlist.id,
+            publicPlaylist.username
+          ]"
+        >
+          <div class="card" podcastBorderCard>
+            <div class="card-image">
+              <img [src]="publicPlaylist.image" />
+            </div>
+            <div class="card-content">
+              <p>
+                <span class="playlistName">{{
+                  publicPlaylist.playlist.name
+                }}</span>
+              </p>
+              <p>
+                Créée par <span>{{ publicPlaylist.username }}</span>
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

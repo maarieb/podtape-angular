@@ -1,0 +1,46 @@
+@import '../../../styles/styles.scss';
+@import '../../../styles/buttons.scss';
+
+
+.acard {
+    cursor: pointer;
+}
+
+.remove {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.card-deck {
+    text-align: center;
+    padding: 0;
+    font-family: $bigFont;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h1 {
+    margin-left: 20px;
+}
+
+.selectedGenre {
+    margin-left: 20px;
+    font-size: 20px;
+    background-color: $yellow ;
+    font-family: $normalFont;
+    font-size: 18px;
+    font-weight: 500;
+    width: 100%;
+    padding: 6px;
+    border-radius: 20px;
+}
+
+button {
+    margin-left: 10px;
+}

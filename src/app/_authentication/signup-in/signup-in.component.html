@@ -1,0 +1,388 @@
+<div
+  class="container"
+  [ngClass]="{ 'right-panel-active': isRightPanelActive }"
+  id="container"
+>
+  <div class="form-container sign-up-container">
+    <form [formGroup]="registerForm" (ngSubmit)="addNewUser()">
+      <h1>S'inscrire</h1>
+      <p>Rejoins notre communauté de podtapers !</p>
+      <input
+        type="text"
+        placeholder="Identifiant"
+        name="username"
+        formControlName="username"
+      />
+      <div
+        *ngIf="submitted && registerCtrl['username'].invalid"
+        class="invalid-feedback"
+      >
+        <p
+          class="text"
+          *ngIf="
+            registerCtrl['username'].errors &&
+            registerCtrl['username'].errors['required']
+          "
+        >
+          Il faut un identifiant !
+        </p>
+        <p
+          class="text"
+          *ngIf="
+            registerCtrl['username'].errors &&
+            registerCtrl['username'].errors['minLength']
+          "
+        >
+          L'identifiant doit avoir au moins 3 charactères !
+        </p>
+        <p
+          class="text"
+          *ngIf="
+            registerCtrl['username'].errors &&
+            registerCtrl['username'].errors['maxLength']
+          "
+        >
+          L'identifiant ne doit pas dépasser 20 charactères !
+        </p>
+      </div>
+      <input
+        type="email"
+        placeholder="Email"
+        name="email"
+        formControlName="email"
+      />
+      <div
+        *ngIf="submitted && registerCtrl['email'].invalid"
+        class="invalid-feedback"
+      >
+        <p
+          class="text"
+          *ngIf="
+            registerCtrl['email'].errors &&
+            registerCtrl['email'].errors['required']
+          "
+        >
+          Il faut un email !
+        </p>
+        <p
+          class="text"
+          *ngIf="
+            registerCtrl['email'].errors &&
+            registerCtrl['email'].errors['email']
+          "
+        >
+          L'email n'est pas au bon format !
+        </p>
+      </div>
+      <input
+        type="password"
+        placeholder="Mot de passe"
+        name="password"
+        formControlName="password"
+      />
+      <div
+        *ngIf="submitted && registerCtrl['password'].invalid"
+        class="invalid-feedback"
+      >
+        <p
+          class="text"
+          *ngIf="
+            registerCtrl['password'].errors &&
+            registerCtrl['password'].errors['required']
+          "
+        >
+          Il faut un mot de passe !
+        </p>
+        <p
+          class="text"
+          *ngIf="
+            registerCtrl['password'].errors &&
+            registerCtrl['password'].errors['pattern']
+          "
+        >
+          Le mot de passe doit contenir au moins : 6 caractères, dont une
+          majuscule, une minuscule et un chiffre.
+        </p>
+      </div>
+      <input
+        type="password"
+        placeholder="Confirmer le mot de passe"
+        name="confirmPassword"
+        formControlName="confirmPassword"
+      />
+      <div
+        *ngIf="submitted && registerCtrl['confirmPassword'].invalid"
+        class="invalid-feedback"
+      >
+        <p
+          class="text"
+          *ngIf="
+            registerCtrl['confirmPassword'].errors &&
+            registerCtrl['confirmPassword'].errors['required']
+          "
+        >
+          Il faut confirmer le mot de passe !
+        </p>
+      </div>
+      <div class="space"></div>
+      <button type="submit">S'inscrire</button>
+      <p class="text">{{ registerMessage }}</p>
+    </form>
+  </div>
+  <div class="form-container sign-in-container">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <h1>Se connecter</h1>
+      <p>Tes podcasts préférés t'attendent !</p>
+      <input
+        type="text"
+        placeholder="Identifiant"
+        name="username"
+        formControlName="username"
+      />
+      <div
+        *ngIf="submitted && loginCtrl['username'].invalid"
+        class="invalid-feedback"
+      >
+        <p
+          class="text"
+          *ngIf="
+            loginCtrl['username'].errors &&
+            loginCtrl['username'].errors['required']
+          "
+        >
+          Il faut un identifiant !
+        </p>
+      </div>
+      <input
+        type="password"
+        placeholder="Mot de passe"
+        name="password"
+        formControlName="password"
+      />
+      <div
+        *ngIf="submitted && loginCtrl['password'].invalid"
+        class="invalid-feedback"
+      >
+        <p
+          class="text"
+          *ngIf="
+            loginCtrl['username'].errors &&
+            loginCtrl['username'].errors['required']
+          "
+        >
+          Il faut un mot de passe !
+        </p>
+      </div>
+      <div class="space"></div>
+      <button type="submit">Se connecter</button>
+      <div class="space"></div>
+      <p class="text">{{ loginMessage }}</p>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <p class="overlay-text">Tu as déjà un compte Podtape ?</p>
+        <div class="space"></div>
+        <button class="ghost" id="signin" (click)="onSignInClick()">
+          Se connecter
+        </button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <p class="overlay-text">Tu n'as pas encore de compte Podtape ?</p>
+        <div class="space"></div>
+        <button class="ghost" id="signup" (click)="onSignUpClick()">
+          S'inscrire
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- For small screens -->
+<div class="smallContainer" id="smallContainer">
+  <div class="sc-signup" id="sc-signup">
+    <form [formGroup]="registerForm" (ngSubmit)="addNewUser()">
+      <h1>S'inscrire</h1>
+      <p>Rejoins notre communauté de podtapers !</p>
+      <input
+        type="text"
+        placeholder="Identifiant"
+        name="username"
+        formControlName="username"
+      />
+      <div
+        *ngIf="submitted && registerCtrl['username'].invalid"
+        class="invalid-feedback"
+      >
+        <p
+          class="text"
+          *ngIf="
+            registerCtrl['username'].errors &&
+            registerCtrl['username'].errors['required']
+          "
+        >
+          Il faut un identifiant !
+        </p>
+        <p
+          class="text"
+          *ngIf="
+            registerCtrl['username'].errors &&
+            registerCtrl['username'].errors['minLength']
+          "
+        >
+          L'identifiant doit avoir au moins 3 charactères !
+        </p>
+        <p
+          class="text"
+          *ngIf="
+            registerCtrl['username'].errors &&
+            registerCtrl['username'].errors['maxLength']
+          "
+        >
+          L'identifiant ne doit pas dépasser 20 charactères !
+        </p>
+      </div>
+      <input
+        type="email"
+        placeholder="Email"
+        name="email"
+        formControlName="email"
+      />
+      <div
+        *ngIf="submitted && registerCtrl['email'].invalid"
+        class="invalid-feedback"
+      >
+        <p
+          class="text"
+          *ngIf="
+            registerCtrl['email'].errors &&
+            registerCtrl['email'].errors['required']
+          "
+        >
+          Il faut un email !
+        </p>
+        <p
+          class="text"
+          *ngIf="
+            registerCtrl['email'].errors &&
+            registerCtrl['email'].errors['email']
+          "
+        >
+          L'email n'est pas au bon format !
+        </p>
+      </div>
+      <input
+        type="password"
+        placeholder="Mot de passe"
+        name="password"
+        formControlName="password"
+      />
+      <div
+        *ngIf="submitted && registerCtrl['password'].invalid"
+        class="invalid-feedback"
+      >
+        <p
+          class="text"
+          *ngIf="
+            registerCtrl['password'].errors &&
+            registerCtrl['password'].errors['required']
+          "
+        >
+          Il faut un mot de passe !
+        </p>
+        <p
+          class="text"
+          *ngIf="
+            registerCtrl['password'].errors &&
+            registerCtrl['password'].errors['pattern']
+          "
+        >
+          Le mot de passe doit contenir au moins : 6 caractères, dont une
+          majuscule, une minuscule et un chiffre.
+        </p>
+      </div>
+      <input
+        type="password"
+        placeholder="Confirmer le mot de passe"
+        name="confirmPassword"
+        formControlName="confirmPassword"
+      />
+      <div
+        *ngIf="submitted && registerCtrl['confirmPassword'].invalid"
+        class="invalid-feedback"
+      >
+        <p
+          class="text"
+          *ngIf="
+            registerCtrl['confirmPassword'].errors &&
+            registerCtrl['confirmPassword'].errors['required']
+          "
+        >
+          Il faut confirmer le mot de passe !
+        </p>
+      </div>
+      <div class="space"></div>
+      <a class="text smallLinks" (click)="switchLoginView()"
+        >Tu as déjà un compte ?</a
+      >
+      <div class="space"></div>
+      <button type="submit">S'inscrire</button>
+      <p class="text">{{ registerMessage }}</p>
+    </form>
+  </div>
+  <div class="sc-signin" id="sc-signin">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <h1>Se connecter</h1>
+      <p>Tes podcasts préférés t'attendent !</p>
+      <input
+        type="text"
+        placeholder="Identifiant"
+        name="username"
+        formControlName="username"
+      />
+      <div
+        *ngIf="submitted && loginCtrl['username'].invalid"
+        class="invalid-feedback"
+      >
+        <p
+          class="text"
+          *ngIf="
+            loginCtrl['username'].errors &&
+            loginCtrl['username'].errors['required']
+          "
+        >
+          Il faut un identifiant !
+        </p>
+      </div>
+      <input
+        type="password"
+        placeholder="Mot de passe"
+        name="password"
+        formControlName="password"
+      />
+      <div
+        *ngIf="submitted && loginCtrl['password'].invalid"
+        class="invalid-feedback"
+      >
+        <p
+          class="text"
+          *ngIf="
+            loginCtrl['username'].errors &&
+            loginCtrl['username'].errors['required']
+          "
+        >
+          Il faut un mot de passe !
+        </p>
+      </div>
+      <div class="space"></div>
+      <a class="text smallLinks" (click)="switchLoginView()"
+        >Tu n'as pas encore de compte ?</a
+      >
+      <div class="space"></div>
+      <button type="submit">Se connecter</button>
+      <div class="space"></div>
+      <p class="text">{{ loginMessage }}</p>
+    </form>
+  </div>
+</div>

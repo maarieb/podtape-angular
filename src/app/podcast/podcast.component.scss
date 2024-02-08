@@ -1,0 +1,95 @@
+@import '../../styles/styles.scss';
+@import '../../styles/inputs.scss';
+
+img {
+    max-width: 100%;
+}
+
+h3 {
+    font-family: $bigFont;
+    font-size: 32px;
+}
+
+.title, .publisher, .genres {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: black;
+    font-weight:100;
+    font-size: 16px;
+}
+
+.genres {
+    display: block;
+}
+
+.title {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 18px;
+    padding-bottom: 10px;
+}
+
+.titleDiv {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+select {
+
+    margin: 20px auto;
+}
+
+select:focus {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px !important;
+    border: none !important;
+}
+
+.userInputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-container {
+    width: 100%;
+}
+
+.card-body {
+    background-color: #FFFEFE;
+}
+
+.subTitle {
+    font-size: 18px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+// #####################################################################################
+// RESPONSIVENESS
+
+@media screen and (max-width: 600px) {
+
+    .card {
+        width: 20rem;
+    }
+
+    .card-deck {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+    
+    .title, .publisher, .genres {
+        font-size: 14px;
+    }
+
+}

@@ -1,0 +1,24 @@
+<h1 class="center">Salut {{ currentUser }}</h1>
+<h2 class="center">Voici nos recommandations conçues rien que pour toi !</h2>
+<div class="space"></div>
+<div class="container">
+  <div class="row">
+    <div class="card-deck">
+      <div *ngFor="let podcast of recommendations" class="col xl2 l3 m4 s12">
+        <a [routerLink]="['/podtheque/detail', podcast.podcastId]">
+          <div class="card" podcastBorderCard>
+            <div class="card-image">
+              <img [src]="podcast.image" />
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="space"></div>
+<div class="reload">
+  <a (click)="getNewRecommendation()">
+    <fa-icon [icon]="faRepeat" size="2xl"></fa-icon>
+  </a>
+</div>
